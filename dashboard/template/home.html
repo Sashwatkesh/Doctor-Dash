@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+{% include "messages.html" %}
+
+<h1 class="text-center">Dashboard</h1>
+<hr>
+
+<div class="container px-4 text-center">
+  <div class="row gx-5">
+    <div class="col">
+      <div class="p-4">
+        <h3>Doctor</h3>
+        {% for i in obj %}
+        {% if i.type == "Doctor" %}
+        <div class="card" style="width: 18rem;">
+            <img src="/media/{{i.profile_pic}}" width="70%" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"> Dr {{i.fname}}</h5>
+            <p class="card-text">Email :- {{i.email}}</p>
+            {% if user.is_authenticated %}
+            <a href="/slug/{{i.uid}}" class="btn btn-primary">Details</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        <br>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-4">
+        <h3>Patient</h3>
+        {% for i in obj %}
+        {% if i.type == "Patient" %}
+        <div class="card" style="width: 18rem;">
+        
+            <img src="/media/{{i.profile_pic}}" height="0%" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{i.fname}}</h5>
+            <p class="card-text">Email :- {{i.email}}</p>
+            {% if user.is_authenticated %}
+            <a href="/slug/{{i.uid}}" class="btn btn-primary">Details</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        <br>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}

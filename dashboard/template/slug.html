@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}About{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="container px-4">
+            <div class="row gx-5">
+                <div class="col">
+                    <div class="p-3">
+                        {% for i in obj %}
+                        {{i.type}}
+                        <div class="card" style="width: 18rem;">
+                            <img src="/media/{{i.profile_pic}}" width="70%" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{i.fname}}</h5>
+                                <ul>
+                                    <li><p class="card-text">Email :- {{i.email}}</p></li>
+                                    <li><p class="card-text">Address :- {{i.address}}</p></li>
+                                    <li><p class="card-text">Location :- {{i.city}} {{i.state}} {{i.pincode}}</p></li>
+                                  </ul>
+                                  
+                                  
+                                {% if user.is_authenticated %}
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <br>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    {% endblock %}
+
+
+    
